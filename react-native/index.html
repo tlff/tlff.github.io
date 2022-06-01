@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>2022年5月23日 | 日常记录</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.e7a814f1.js" as="script"><link rel="preload" href="/assets/js/2.4f3e87c3.js" as="script"><link rel="preload" href="/assets/js/10.37f5a9db.js" as="script"><link rel="prefetch" href="/assets/js/11.21613414.js"><link rel="prefetch" href="/assets/js/12.a5548dd4.js"><link rel="prefetch" href="/assets/js/13.2ecff10a.js"><link rel="prefetch" href="/assets/js/14.b2983cab.js"><link rel="prefetch" href="/assets/js/3.fbcff43a.js"><link rel="prefetch" href="/assets/js/4.ccd96dc0.js"><link rel="prefetch" href="/assets/js/5.2b5a6211.js"><link rel="prefetch" href="/assets/js/6.1991384a.js"><link rel="prefetch" href="/assets/js/7.6c6c44d6.js"><link rel="prefetch" href="/assets/js/8.f366b806.js"><link rel="prefetch" href="/assets/js/9.a7031c4d.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">日常记录</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/docker/" class="sidebar-link">docker</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/linux/" class="sidebar-heading clickable"><span>linux</span> <span class="arrow right"></span></a> <!----></section></li><li><a href="/react-native/" aria-current="page" class="active sidebar-link">react-native</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/scoop/" class="sidebar-link">scoop</a></li><li><a href="/" aria-current="page" class="sidebar-link">scripts</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/swoole/" class="sidebar-heading clickable"><span>swoole</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="_2022年5月23日"><a href="#_2022年5月23日" class="header-anchor">#</a> 2022年5月23日</h1> <h3 id="codepush的用法"><a href="#codepush的用法" class="header-anchor">#</a> codepush的用法</h3> <p>首先安装code-push-cli@2.1.9
+其他版本的和自己搭建的服务器配合不上</p> <ol><li>登录
+code-push login http://192.168.18.44:3000
+code-push logout</li> <li>初始化一个应用
+code-push app add renai Android react-native</li> <li>获取应用的key
+code-push deployment ls renai -k
+│ Name       │ Deployment Key                        │
+├────────────┼──────────────────────.─────────────────┤.
+│ Production │ IpS17r7OTZ6rhr39Jz5HYxNxcw0P4ksvOXqog │
+├────────────┼───────────────────────────────────────┤
+│ Staging    │ DgZdMfWE2QbWxuyS598y0uvy1Byj4ksvOXqog</li> <li>推送一个更新
+code-push release-react renai android -d Production --t 1.0.1 --des &quot;&quot;
+code-push release-react renai android -d Staging --t 1.0.1 --des &quot;&quot;</li> <li>回滚一个更新
+code-push rollback renai Production -r v2</li> <li>禁用
+code-push patch renai Production -l v1 --des &quot;禁用&quot; -x</li> <li>查看历史
+code-push deployment history BorrowApp Production</li></ol> <h3 id="软件清单"><a href="#软件清单" class="header-anchor">#</a> 软件清单</h3> <div class="language-json extra-class"><pre class="language-json"><code><span class="token property">&quot;react-native&quot;</span><span class="token operator">:</span> <span class="token string">&quot;0.63.2&quot;</span><span class="token punctuation">,</span>
+<span class="token property">&quot;react-native-code-push&quot;</span><span class="token operator">:</span> <span class="token string">&quot;6.4.1&quot;</span><span class="token punctuation">,</span>
+</code></pre></div><h3 id="初始化"><a href="#初始化" class="header-anchor">#</a> 初始化</h3> <ul><li>在<code>android\settings.gradle</code>在末尾添加</li></ul> <div class="language-gradle extra-class"><pre class="language-text"><code>include ':app', ':react-native-code-push'
+project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')
+</code></pre></div><ul><li><code>android\app\build.gradle</code></li></ul> <div class="language-gradle extra-class"><pre class="language-text"><code>apply from: &quot;../../node_modules/react-native/react.gradle&quot;
+apply from: &quot;../../node_modules/react-native-code-push/android/codepush.gradle&quot;
+</code></pre></div><ul><li><code>android\app\src\main\java\com\app\MainApplication.java</code></li></ul> <p>引入codepush 替换下面两个函数</p> <p><code>DgZdMfWE2QbWxuyS598y0uvy1Byj4ksvOXqog</code> 这个在我的配置中是无效的.js 在掉用codepush时会再传递一次这个参数.这里设置的会被覆盖
+<code>http://192.168.18.44:3000/</code> 将这个换成自己的服务器地址</p> <div class="language-java extra-class"><pre class="language-java"><code><span class="token keyword">import</span> <span class="token import"><span class="token namespace">com<span class="token punctuation">.</span>microsoft<span class="token punctuation">.</span>codepush<span class="token punctuation">.</span>react<span class="token punctuation">.</span></span><span class="token class-name">CodePush</span></span><span class="token punctuation">;</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token class-name">String</span> <span class="token function">getJSBundleFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token class-name">CodePush</span><span class="token punctuation">.</span><span class="token function">getJSBundleFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">protected</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReactPackage</span><span class="token punctuation">&gt;</span></span> <span class="token function">getPackages</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">&quot;UnnecessaryLocalVariable&quot;</span><span class="token punctuation">)</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReactPackage</span><span class="token punctuation">&gt;</span></span> packages <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PackageList</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getPackages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Packages that cannot be autolinked yet can be added manually here, for</span>
+    <span class="token comment">// example:</span>
+    <span class="token comment">// packages.add(new MyReactNativePackage());</span>
+    <span class="token comment">// // 先移除auto link的code push包，再手动添加</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ReactPackage</span> rp <span class="token operator">:</span> packages<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>rp <span class="token keyword">instanceof</span> <span class="token class-name">CodePush</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            packages<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>rp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    packages<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CustomToastPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    packages<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CodePush</span><span class="token punctuation">(</span><span class="token string">&quot;DgZdMfWE2QbWxuyS598y0uvy1Byj4ksvOXqog&quot;</span><span class="token punctuation">,</span>
+            <span class="token class-name">MainApplication</span><span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token class-name">BuildConfig</span><span class="token punctuation">.</span>DEBUG<span class="token punctuation">,</span>
+            <span class="token string">&quot;http://192.168.18.44:3000/&quot;</span>
+    <span class="token comment">// &quot;http://59.67.37.72:3000/&quot;</span>
+    <span class="token comment">// &quot;http://192.168.18.202:3000/&quot;</span>
+    <span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> packages<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+</code></pre></div><ul><li><code>android\app\src\main\res\values\strings.xml</code></li></ul> <p>同样这里的<code>DgZdMfWE2QbWxuyS598y0uvy1Byj4ksvOXqog</code>也无效但是这个配置要有</p> <div class="language-xml extra-class"><pre class="language-xml"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>resources</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>app_name<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>仁爱学院借物柜<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">&gt;</span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span> <span class="token attr-name">moduleConfig</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>CodePushDeploymentKey<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>DgZdMfWE2QbWxuyS598y0uvy1Byj4ksvOXqog<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>appCenterCrashes_whenToSendCrashes<span class="token punctuation">&quot;</span></span> <span class="token attr-name">moduleConfig</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span> <span class="token attr-name">translatable</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>false<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>DO_NOT_ASK_JAVASCRIPT<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>appCenterAnalytics_whenToEnableAnalytics<span class="token punctuation">&quot;</span></span> <span class="token attr-name">moduleConfig</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>true<span class="token punctuation">&quot;</span></span> <span class="token attr-name">translatable</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">&quot;</span>false<span class="token punctuation">&quot;</span></span><span class="token punctuation">&gt;</span></span>ALWAYS_SEND<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>resources</span><span class="token punctuation">&gt;</span></span>
+</code></pre></div><ul><li>js调用codepush更新 附带一个文件</li></ul> <p>直接调用<code>update</code>方法就行了</p> <div class="language-typescript extra-class"><pre class="language-typescript"><code><span class="token keyword">import</span> CodePush <span class="token keyword">from</span> <span class="token string">'react-native-code-push'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>Toast<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../components/layout'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>dev<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../config/config'</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span>updateVersion<span class="token punctuation">,</span> saveLog<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'../api/index'</span><span class="token punctuation">;</span>
+<span class="token comment">// const dev=__DEV__</span>
+<span class="token comment">//为了测试方便 正式环境和测试环境的key改成一样的 区别在服务器部署位置,测试时使用代理将软件的链接全部代理到测试服务器</span>
+<span class="token keyword">let</span> key <span class="token operator">=</span> dev
+    <span class="token operator">?</span> <span class="token string">'aptbm5Ko2Ep7FAmvSsl6vN7EANJm4ksvOXqog'</span>
+    <span class="token operator">:</span> <span class="token string">'aptbm5Ko2Ep7FAmvSsl6vN7EANJm4ksvOXqog'</span><span class="token punctuation">;</span>
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getInfo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> CodePush<span class="token punctuation">.</span><span class="token function">checkForUpdate</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">notifyAppReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> CodePush<span class="token punctuation">.</span><span class="token function">notifyAppReady</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>e<span class="token operator">:</span> <span class="token builtin">any</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token operator">&amp;&amp;</span> e<span class="token punctuation">.</span>package<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">updateVersion</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>package<span class="token operator">?.</span>appVersion<span class="token punctuation">,</span> e<span class="token punctuation">.</span>package<span class="token operator">?.</span>label<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">export</span> <span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">update</span><span class="token punctuation">(</span>dialog <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'触发更新'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">saveLog</span><span class="token punctuation">(</span><span class="token string">'检查更新'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> da <span class="token operator">=</span> <span class="token punctuation">{</span>
+        mandatoryContinueButtonLabel<span class="token operator">:</span> <span class="token string">'强制更新/确认'</span><span class="token punctuation">,</span>
+        optionalIgnoreButtonLabel<span class="token operator">:</span> <span class="token string">'取消'</span><span class="token punctuation">,</span>
+        optionalInstallButtonLabel<span class="token operator">:</span> <span class="token string">'安装'</span><span class="token punctuation">,</span>
+        title<span class="token operator">:</span> <span class="token string">'发现新版本'</span><span class="token punctuation">,</span>
+        optionalUpdateMessage<span class="token operator">:</span> <span class="token string">'有新版本可用是否更新?'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">onStatus</span> <span class="token operator">=</span> <span class="token punctuation">(</span>status<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> maps <span class="token operator">=</span> <span class="token punctuation">[</span>
+            <span class="token string">'已经是最新版本'</span><span class="token punctuation">,</span>
+            <span class="token string">'安装完成等待生效'</span><span class="token punctuation">,</span>
+            <span class="token string">'忽略更新'</span><span class="token punctuation">,</span>
+            <span class="token string">'发生未知错误'</span><span class="token punctuation">,</span>
+            <span class="token string">'正在下载'</span><span class="token punctuation">,</span>
+            <span class="token string">'查询更新'</span><span class="token punctuation">,</span>
+            <span class="token string">'弹出确认提示框'</span><span class="token punctuation">,</span>
+            <span class="token string">'下载中'</span><span class="token punctuation">,</span>
+            <span class="token string">'下载完成'</span><span class="token punctuation">,</span>
+        <span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>status <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">||</span> status <span class="token operator">===</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">Toast</span><span class="token punctuation">(</span>maps<span class="token punctuation">[</span>status<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> CodePush<span class="token punctuation">.</span><span class="token function">sync</span><span class="token punctuation">(</span>
+        <span class="token comment">// 第一个参数吗，是个对象，可定义更新的动作</span>
+        <span class="token punctuation">{</span>
+            <span class="token comment">// 安装模式 'IMMEDIATE' 立刻安装， ON_NEXT_RESUME 下次启动安装</span>
+            installMode<span class="token operator">:</span> CodePush<span class="token punctuation">.</span>InstallMode<span class="token punctuation">.</span><span class="token constant">IMMEDIATE</span><span class="token punctuation">,</span>
+            deploymentKey<span class="token operator">:</span> key<span class="token punctuation">,</span>
+            <span class="token comment">// 强制更新模式下的安装，默认是IMMEDIATE 直接安装</span>
+            mandatoryInstallMode<span class="token operator">:</span> CodePush<span class="token punctuation">.</span>InstallMode<span class="token punctuation">.</span><span class="token constant">IMMEDIATE</span><span class="token punctuation">,</span>
+            <span class="token comment">//更新确认弹窗设置，设置系统自带弹窗中的内容</span>
+            updateDialog<span class="token operator">:</span> dialog <span class="token operator">?</span> da <span class="token operator">:</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        dialog <span class="token operator">?</span> onStatus <span class="token operator">:</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="错误和注意事项"><a href="#错误和注意事项" class="header-anchor">#</a> 错误和注意事项</h3> <h4 id="添加react-native-code-push后打包的时候无法从远程网站下载资源"><a href="#添加react-native-code-push后打包的时候无法从远程网站下载资源" class="header-anchor">#</a> 添加<code>react-native-code-push</code>后打包的时候无法从远程网站下载资源</h4> <p>在<code>android\build.gradle</code>文件下添加<code>maven { url 'https://dl.google.com/dl/android/maven2/' }</code></p> <div class="language-gradle extra-class"><pre class="language-text"><code>allprojects {
+    repositories {
+        mavenLocal()
+        maven {
+            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
+            url(&quot;$rootDir/../node_modules/react-native/android&quot;)
+        }
+        maven {
+            // Android JSC is installed from npm
+            url(&quot;$rootDir/../node_modules/jsc-android/dist&quot;)
+        }
+        maven { url 'https://www.jitpack.io' }
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://dl.google.com/dl/android/maven2/' }
+        google()
+        jcenter()
+    
+    }
+}
+</code></pre></div><h4 id="gradle-版本"><a href="#gradle-版本" class="header-anchor">#</a> <code>gradle</code> 版本</h4> <p><code>appborrow/android/gradle/wrapper/gradle-wrapper.properties</code></p> <div class="language- extra-class"><pre class="language-text"><code>#Wed Dec 16 17:41:13 CST 2020
+distributionBase=GRADLE_USER_HOME
+distributionPath=wrapper/dists
+zipStoreBase=GRADLE_USER_HOME
+zipStorePath=wrapper/dists
+distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-all.zip
+
+</code></pre></div><h4 id="无法build的时候可以打开androidstudio-sync-build-一下"><a href="#无法build的时候可以打开androidstudio-sync-build-一下" class="header-anchor">#</a> 无法build的时候可以打开androidstudio sync/build 一下</h4></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">编辑于:</span> <span class="time">5/31/2022, 12:07:52 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/linux/安装php7.3记录.html" class="prev">
+        安装php7.3记录
+      </a></span> <span class="next"><a href="/scoop/">
+        scoop
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e7a814f1.js" defer></script><script src="/assets/js/2.4f3e87c3.js" defer></script><script src="/assets/js/10.37f5a9db.js" defer></script>
+  </body>
+</html>

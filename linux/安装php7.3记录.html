@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>日常记录</title>
+    <meta name="generator" content="VuePress 1.9.7">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.e4d8b86b.css" as="style"><link rel="preload" href="/assets/js/app.e7a814f1.js" as="script"><link rel="preload" href="/assets/js/2.4f3e87c3.js" as="script"><link rel="preload" href="/assets/js/9.a7031c4d.js" as="script"><link rel="prefetch" href="/assets/js/10.37f5a9db.js"><link rel="prefetch" href="/assets/js/11.21613414.js"><link rel="prefetch" href="/assets/js/12.a5548dd4.js"><link rel="prefetch" href="/assets/js/13.2ecff10a.js"><link rel="prefetch" href="/assets/js/14.b2983cab.js"><link rel="prefetch" href="/assets/js/3.fbcff43a.js"><link rel="prefetch" href="/assets/js/4.ccd96dc0.js"><link rel="prefetch" href="/assets/js/5.2b5a6211.js"><link rel="prefetch" href="/assets/js/6.1991384a.js"><link rel="prefetch" href="/assets/js/7.6c6c44d6.js"><link rel="prefetch" href="/assets/js/8.f366b806.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.e4d8b86b.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">日常记录</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><a href="/docker/" class="sidebar-link">docker</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/linux/" class="sidebar-heading clickable router-link-active open"><span>linux</span> <span class="arrow down"></span></a> <ul class="sidebar-links sidebar-group-items"><li><a href="/linux/安装php7.3记录.html" class="active sidebar-link">安装php7.3记录</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/linux/安装php7.3记录.html#安装依赖" class="sidebar-link">安装依赖</a></li><li class="sidebar-sub-header"><a href="/linux/安装php7.3记录.html#安装php" class="sidebar-link">安装PHP</a></li><li class="sidebar-sub-header"><a href="/linux/安装php7.3记录.html#配置参数" class="sidebar-link">配置参数</a></li><li class="sidebar-sub-header"><a href="/linux/安装php7.3记录.html#将php和php-fpm加入环境变量" class="sidebar-link">将php和php-fpm加入环境变量</a></li><li class="sidebar-sub-header"><a href="/linux/安装php7.3记录.html#让nginx使用新的php" class="sidebar-link">让nginx使用新的php</a></li><li class="sidebar-sub-header"><a href="/linux/安装php7.3记录.html#配置php-fpm" class="sidebar-link">配置php-fpm</a></li><li class="sidebar-sub-header"><a href="/linux/安装php7.3记录.html#安装php途中遇到的问题" class="sidebar-link">安装php途中遇到的问题</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/linux/安装php7.3记录.html#编译安装libzip" class="sidebar-link">编译安装libzip</a></li></ul></li></ul></li></ul></section></li><li><a href="/react-native/" class="sidebar-link">react-native</a></li><li><a href="/scoop/" class="sidebar-link">scoop</a></li><li><a href="/" aria-current="page" class="sidebar-link">scripts</a></li><li><section class="sidebar-group collapsable depth-0"><a href="/swoole/" class="sidebar-heading clickable"><span>swoole</span> <span class="arrow right"></span></a> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><p>编辑于:2019年2月15日</p> <h2 id="安装依赖"><a href="#安装依赖" class="header-anchor">#</a> 安装依赖</h2> <div class="language-shell extra-class"><pre class="language-shell"><code>yum <span class="token function">install</span> -y libxml2 libxml2-devel libcurl libcurl-devel <span class="token punctuation">\</span>
+libpng libpng-devel freetype-devel libxslt libxslt-devel  <span class="token punctuation">\</span>
+libjpeg  libjpeg-devel freetype 
+</code></pre></div><h2 id="安装php"><a href="#安装php" class="header-anchor">#</a> 安装PHP</h2> <ul><li>官网下载PHP</li> <li>解压</li> <li>配置参数 编译 安装</li></ul> <h2 id="配置参数"><a href="#配置参数" class="header-anchor">#</a> 配置参数</h2> <div class="language-shell extra-class"><pre class="language-shell"><code>//成功
+./configure <span class="token punctuation">\</span>
+--prefix<span class="token operator">=</span>/usr/local/php73 <span class="token punctuation">\</span>
+--enable-fpm --with-config-file-path<span class="token operator">=</span>/etc/ <span class="token punctuation">\</span>
+--with-libxml-dir --with-openssl  --with-zlib <span class="token punctuation">\</span>
+--with-curl --with-freetype-dir --with-gd --enable-mbstring --with-mysqli <span class="token punctuation">\</span>
+--enable-pcntl --enable-zip --with-libzip<span class="token operator">=</span>/usr/local/libzip <span class="token punctuation">\</span>
+--with-pdo-mysql <span class="token punctuation">\</span>
+--with-jpeg-dir --with-png-dir --with-freetype-dir --with-zlib-dir
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>//没试过
+./configure --prefix=/usr/local/php \
+--with-curl --with-freetype-dir --with-gd \
+--with-gettext --with-iconv-dir --with-kerberos \
+--with-libdir=lib64 --with-libxml-dir --with-mysqli \
+--with-openssl --with-pcre-regex --with-pdo-mysql \
+--with-pdo-sqlite --with-pear --with-png-dir --with-jpeg-dir \
+--with-xmlrpc --with-xsl --with-zlib --with-bz2 --with-mhash \
+--enable-fpm --enable-bcmath --enable-libxml --enable-inline-optimization \
+--enable-mbregex --enable-mbstring --enable-opcache --enable-pcntl \
+--enable-shmop --enable-soap --enable-sockets --enable-sysvsem \
+--enable-sysvshm --enable-xml --enable-zip --with-libzip=/usr/local/libzip
+
+
+//确认没错之后
+make &amp;&amp; make install
+</code></pre></div><h2 id="将php和php-fpm加入环境变量"><a href="#将php和php-fpm加入环境变量" class="header-anchor">#</a> 将php和php-fpm加入环境变量</h2> <div class="language- extra-class"><pre class="language-text"><code>//查看环境变量
+echo $PATH
+//删除旧的php和php-fpm
+//创建软连接
+ln -s /usr/local/php73/bin/php /usr/bin/php
+ln -s /usr/local/php73/sbin/php-fpm /usr/bin/php-fpm
+</code></pre></div><h2 id="让nginx使用新的php"><a href="#让nginx使用新的php" class="header-anchor">#</a> 让nginx使用新的php</h2> <p>因为PHP使用php-fpm管理的nginx只是监听127.0.0.1:9000这个端口,所以有两个方法可以让nginx使用新的PHP</p> <ol><li>关了旧的php-fpm,使用新的php-fpm</li> <li>修改nginx监听的端口同时修改fpm配置中的端口,启动新的php-fpm</li></ol> <h2 id="配置php-fpm"><a href="#配置php-fpm" class="header-anchor">#</a> 配置php-fpm</h2> <p>编译安装的php-fpm在/usr/local/php73/sbin,默认的配置文件在/usr/local/php73/etc中</p> <p>从默认配置文件创建一个配置文件</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">cp</span> /usr/local/php73/etc/php-fpm.conf.default /usr/local/php73/etc/php-fpm.conf
+<span class="token function">cp</span> /usr/local/php73/etc/php-fpm.d/www.conf.default /usr/local/php73/etc/php-fpm.d/www.conf
+</code></pre></div><p>修改www.conf中的user和group 为nginx</p> <h2 id="安装php途中遇到的问题"><a href="#安装php途中遇到的问题" class="header-anchor">#</a> 安装php途中遇到的问题</h2> <ul><li><p>configure: error: off_t undefined; check your library configuration</p> <p>解决:将libzip加入的ld path中 并在设置参数的时候指定libzip的安装目录</p></li> <li><p>遇到某些扩展没有 一般安装这个扩展和 扩展-devel版本</p></li></ul> <h3 id="编译安装libzip"><a href="#编译安装libzip" class="header-anchor">#</a> 编译安装libzip</h3> <p>yum中自带的libzip版本太低只能手动装了</p> <div class="language- extra-class"><pre class="language-text"><code>wget https://nih.at/libzip/libzip-1.2.0.tar.gz
+tar -zxvf libzip-1.2.0.tar.gz
+cd libzip-1.2.0
+./configure --prefix=/usr/local/libzip
+make &amp;&amp; make install
+//将libzip加入到系统的ld path中 后面这句是刷新缓存
+echo '/usr/local/libzip/lib' &gt;&gt; /etc/ld.so.conf &amp;&amp; ldconfig
+</code></pre></div></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">编辑于:</span> <span class="time">5/31/2022, 12:07:52 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/docker/" class="prev">
+        docker
+      </a></span> <span class="next"><a href="/react-native/">
+        react-native
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.e7a814f1.js" defer></script><script src="/assets/js/2.4f3e87c3.js" defer></script><script src="/assets/js/9.a7031c4d.js" defer></script>
+  </body>
+</html>
